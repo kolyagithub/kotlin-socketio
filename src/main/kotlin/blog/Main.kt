@@ -4,6 +4,9 @@ import io.javalin.ApiBuilder.*
 import io.javalin.Javalin
 import com.corundumstudio.socketio.listener.*
 import com.corundumstudio.socketio.*
+import mu.KotlinLogging
+
+private val logger = KotlinLogging.logger {}
 
 fun main(args: Array<String>) {
 
@@ -48,6 +51,9 @@ fun main(args: Array<String>) {
 
         get("/") { ctx ->
             print("route /")
+            logger.info { "hello 1" }
+            logger.warn { "hello 2" }
+            logger.error { "hello 3" }
             ctx.result("Hello SocketIO")
         }
 
