@@ -15,14 +15,22 @@ fun main(args: Array<String>) {
 
 
     val server = SocketIOServer(config)
+
+    // Without NSP
+    val onData1 = DataListener<ChatObject> { client, data, ackRequest ->
+        server.broadcastOperations.sendEvent("chatevent", data)
+    }
+    server.addEventListener("chatevent", ChatObject::class.java, onData1)
+
+    // With NSP
     val chat1namespace = server.addNamespace("/nsp1")
 
-    val onData = DataListener<Any> { client, data, ackRequest ->
-        println(data);
+    val onData2 = DataListener<Any> { client, data, ackRequest ->
+        println(data)
         chat1namespace.getBroadcastOperations().sendEvent("message", data)
     }
 
-    chat1namespace.addEventListener("message", Any::class.java, onData)
+    chat1namespace.addEventListener("message", Any::class.java, onData2)
 
 
     val chat2namespace = server.addNamespace("/nsp2")
