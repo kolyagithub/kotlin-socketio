@@ -28,6 +28,7 @@ dependencies {
     compile group: 'com.corundumstudio.socketio', name: 'netty-socketio', version: '1.7.12'
     compile 'io.github.microutils:kotlin-logging:1.4.6'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile 'io.socket:socket.io-client:1.0.0'
 }
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
